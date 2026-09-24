@@ -1,0 +1,86 @@
+---
+title: "Exploring the Iris Dataset with Python"
+author: "Wahid Raziqi"
+date: today
+categories: [python, data-analysis]
+jupyter: python3
+---
+
+# Introduction
+
+The Iris dataset is a classic dataset in machine learning and statistics. It contains measurements of iris flowers from three species:
+
+- Setosa
+- Versicolor
+- Virginica
+
+The dataset is included in the `scikit-learn` package, making it easy to use for exploratory analysis.
+
+# Load packages and data
+
+```{python}
+from sklearn.datasets import load_iris
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+```{python}
+iris = load_iris()
+
+df = pd.DataFrame(
+    iris.data,
+    columns=iris.feature_names
+)
+
+df["species"] = iris.target
+df["species"] = df["species"].map({
+    0: "setosa",
+    1: "versicolor",
+    2: "virginica"
+})
+
+df.head()
+```
+
+# Summary statistics
+
+```{python}
+df.groupby("species").mean()
+```
+
+The table above shows the average flower measurements for each species.
+
+# Visualization
+
+```{python}
+#| label: fig-iris-measurements
+#| fig-cap: "Sepal length versus petal length for the three iris species."
+
+plt.figure(figsize=(6,4))
+
+for species in df["species"].unique():
+    subset = df[df["species"] == species]
+    plt.scatter(
+        subset["sepal length (cm)"],
+        subset["petal length (cm)"],
+        label=species
+    )
+
+plt.xlabel("Sepal length (cm)")
+plt.ylabel("Petal length (cm)")
+plt.legend()
+plt.title("Iris species comparison")
+
+plt.show()
+```
+
+# Discussion
+
+The scatter plot shows differences among the three iris species. Setosa is separated from the other species, while Versicolor and Virginica overlap somewhat.
+
+This analysis demonstrates how Python, pandas, matplotlib, and scikit-learn can be combined inside a Quarto document to perform a reproducible data analysis.
+
+# Data source
+
+Data: [Iris dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#iris-dataset),
+scikit-learn.

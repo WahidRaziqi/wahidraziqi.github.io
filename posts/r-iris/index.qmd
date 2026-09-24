@@ -1,0 +1,76 @@
+---
+title: "Exploring the Iris Dataset with R"
+author: "Wahid Raziqi"
+date: today
+categories: [r, data-analysis]
+---
+
+# Introduction
+
+The Iris dataset is a classic dataset used in statistics and data analysis. It contains measurements of iris flowers from three species:
+
+- Setosa
+- Versicolor
+- Virginica
+
+The dataset is included in R, making it convenient for a reproducible analysis.
+
+# Load packages and data
+
+```{r}
+#| message: false
+#| warning: false
+
+library(dplyr)
+library(ggplot2)
+
+data(iris)
+```
+
+```{r}
+iris_summary <- iris |>
+  group_by(Species) |>
+  summarise(
+    mean_sepal_length = mean(Sepal.Length),
+    mean_sepal_width = mean(Sepal.Width),
+    mean_petal_length = mean(Petal.Length),
+    mean_petal_width = mean(Petal.Width)
+  )
+
+iris_summary
+```
+# Summary statistics
+
+I calculated the mean sepal length, sepal width, petal length, and petal width for each iris species.
+
+```{r}
+#| label: fig-iris-measurements
+#| fig-cap: "Sepal length versus petal length for the three iris species."
+
+ggplot(
+  iris,
+  aes(
+    x = Sepal.Length,
+    y = Petal.Length,
+    colour = Species
+  )
+) +
+  geom_point() +
+  labs(
+    title = "Iris species comparison",
+    x = "Sepal length (cm)",
+    y = "Petal length (cm)",
+    colour = "Species"
+  ) +
+  theme_minimal()
+```
+
+The visualization shows a clear separation between Setosa and the other two species based on petal length. Versicolor and Virginica have more similar measurements and show some overlap.
+
+# Discussion
+
+This analysis demonstrates how R, dplyr, and ggplot2 can be used together in a Quarto document. The calculations and figure are generated when the document is rendered, making the analysis reproducible.
+
+# Data source
+
+Data: Iris dataset, included with R as the built-in `iris` dataset. The dataset is documented in the R documentation for the `datasets` package.

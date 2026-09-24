@@ -1,17 +1,10 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Wahid Raziqi",
+    "objectID": "posts/r-iris/index.html",
+    "href": "posts/r-iris/index.html",
+    "title": "Exploring the Iris Dataset with R",
     "section": "",
-    "text": "Data Science, Data Management & Data Analysis"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "-Extensive experience in Operations of Information Technology, Communication systems, Technical Support, and Network Security -Cyber Security Analyst Professional Certificate | COMPTIA+ -Junior Data Analytics Program Graduate from NPower Canada | IBM Data Analyst Professional Certificate -Bachelor Degree in Computer Science. -6+ years of experience in workforce development focusing on careers in IT and IT Project Management -Managed, established, and maintained networks, servers, and wireless links, including regular backups of all business-critical data, and ensuring system integrity. -Excellent Communication Skills in English, Pashto, Dari, Farsi, Urdu, and Hindi -Exceptional workplace ethics, creative, critical thinker, and proven problem-solving Skills."
+    "text": "Introduction\nThe Iris dataset is a classic dataset used in statistics and data analysis. It contains measurements of iris flowers from three species:\n\nSetosa\nVersicolor\nVirginica\n\nThe dataset is included in R, making it convenient for a reproducible analysis.\n\n\nLoad packages and data\n\nlibrary(dplyr)\nlibrary(ggplot2)\n\ndata(iris)\n\n\niris_summary &lt;- iris |&gt;\n  group_by(Species) |&gt;\n  summarise(\n    mean_sepal_length = mean(Sepal.Length),\n    mean_sepal_width = mean(Sepal.Width),\n    mean_petal_length = mean(Petal.Length),\n    mean_petal_width = mean(Petal.Width)\n  )\n\niris_summary\n\n# A tibble: 3 × 5\n  Species  mean_sepal_length mean_sepal_width mean_petal_length mean_petal_width\n  &lt;fct&gt;                &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;\n1 setosa                5.01             3.43              1.46            0.246\n2 versico…              5.94             2.77              4.26            1.33 \n3 virgini…              6.59             2.97              5.55            2.03 \n\n\n\n\nSummary statistics\nI calculated the mean sepal length, sepal width, petal length, and petal width for each iris species.\n\nggplot(\n  iris,\n  aes(\n    x = Sepal.Length,\n    y = Petal.Length,\n    colour = Species\n  )\n) +\n  geom_point() +\n  labs(\n    title = \"Iris species comparison\",\n    x = \"Sepal length (cm)\",\n    y = \"Petal length (cm)\",\n    colour = \"Species\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\nFigure 1: Sepal length versus petal length for the three iris species.\n\n\n\n\n\nThe visualization shows a clear separation between Setosa and the other two species based on petal length. Versicolor and Virginica have more similar measurements and show some overlap.\n\n\nDiscussion\nThis analysis demonstrates how R, dplyr, and ggplot2 can be used together in a Quarto document. The calculations and figure are generated when the document is rendered, making the analysis reproducible.\n\n\nData source\nData: Iris dataset, included with R as the built-in iris dataset. The dataset is documented in the R documentation for the datasets package."
   },
   {
     "objectID": "posts/first-weeks/index.html",
@@ -25,6 +18,27 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "My first weeks in MDS\n\n\n\n\n\n\n\n\nSep 9, 2026\n\n\nWahid Raziqi\n\n\n\n\n\nNo matching items"
+    "text": "Exploring the Iris Dataset with Python\n\n\n\n\n\n\n\n\nSep 23, 2026\n\n\nWahid Raziqi\n\n\n\n\n\n\n\n\n\n\n\n\nExploring the Iris Dataset with R\n\n\n\n\n\n\n\n\nSep 23, 2026\n\n\nWahid Raziqi\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 9, 2026\n\n\nWahid Raziqi\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "-Extensive experience in Operations of Information Technology, Communication systems, Technical Support, and Network Security -Cyber Security Analyst Professional Certificate | COMPTIA+ -Junior Data Analytics Program Graduate from NPower Canada | IBM Data Analyst Professional Certificate -Bachelor Degree in Computer Science. -6+ years of experience in workforce development focusing on careers in IT and IT Project Management -Managed, established, and maintained networks, servers, and wireless links, including regular backups of all business-critical data, and ensuring system integrity. -Excellent Communication Skills in English, Pashto, Dari, Farsi, Urdu, and Hindi -Exceptional workplace ethics, creative, critical thinker, and proven problem-solving Skills."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Wahid Raziqi",
+    "section": "",
+    "text": "Data Science, Data Management & Data Analysis"
+  },
+  {
+    "objectID": "posts/python-iris/index.html",
+    "href": "posts/python-iris/index.html",
+    "title": "Exploring the Iris Dataset with Python",
+    "section": "",
+    "text": "Introduction\nThe Iris dataset is a classic dataset in machine learning and statistics. It contains measurements of iris flowers from three species:\n\nSetosa\nVersicolor\nVirginica\n\nThe dataset is included in the scikit-learn package, making it easy to use for exploratory analysis.\n\n\nLoad packages and data\n\nfrom sklearn.datasets import load_iris\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\n\niris = load_iris()\n\ndf = pd.DataFrame(\n    iris.data,\n    columns=iris.feature_names\n)\n\ndf[\"species\"] = iris.target\ndf[\"species\"] = df[\"species\"].map({\n    0: \"setosa\",\n    1: \"versicolor\",\n    2: \"virginica\"\n})\n\ndf.head()\n\n\n\n\n\n\n\n\nsepal length (cm)\nsepal width (cm)\npetal length (cm)\npetal width (cm)\nspecies\n\n\n\n\n0\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n1\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n2\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n3\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n4\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\n\nSummary statistics\n\ndf.groupby(\"species\").mean()\n\n\n\n\n\n\n\n\nsepal length (cm)\nsepal width (cm)\npetal length (cm)\npetal width (cm)\n\n\nspecies\n\n\n\n\n\n\n\n\nsetosa\n5.006\n3.428\n1.462\n0.246\n\n\nversicolor\n5.936\n2.770\n4.260\n1.326\n\n\nvirginica\n6.588\n2.974\n5.552\n2.026\n\n\n\n\n\n\n\nThe table above shows the average flower measurements for each species.\n\n\nVisualization\n\nplt.figure(figsize=(6,4))\n\nfor species in df[\"species\"].unique():\n    subset = df[df[\"species\"] == species]\n    plt.scatter(\n        subset[\"sepal length (cm)\"],\n        subset[\"petal length (cm)\"],\n        label=species\n    )\n\nplt.xlabel(\"Sepal length (cm)\")\nplt.ylabel(\"Petal length (cm)\")\nplt.legend()\nplt.title(\"Iris species comparison\")\n\nplt.show()\n\n\n\n\n\n\n\nFigure 1: Sepal length versus petal length for the three iris species.\n\n\n\n\n\n\n\nDiscussion\nThe scatter plot shows differences among the three iris species. Setosa is separated from the other species, while Versicolor and Virginica overlap somewhat.\nThis analysis demonstrates how Python, pandas, matplotlib, and scikit-learn can be combined inside a Quarto document to perform a reproducible data analysis.\n\n\nData source\nData: Iris dataset, scikit-learn."
   }
 ]

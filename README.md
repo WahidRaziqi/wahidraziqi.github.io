@@ -10,7 +10,7 @@ This project is a personal academic website created for the UBC Master of Data S
 
 
 
-For Milestone 3, the project includes two computational blog posts:
+For Milestone 3, the project includes three computational blog posts:
 
 
 
@@ -18,9 +18,11 @@ For Milestone 3, the project includes two computational blog posts:
 
 * **R:** Exploring the Iris Dataset with R
 
+* **R + Python:** R and Python in One Post using `reticulate`
 
 
-Both posts use code to load, analyze, and visualize the Iris dataset. The analysis and figures are generated when the Quarto site is rendered.
+
+The Python and R posts use code to load, analyze, and visualize the Iris dataset. The R + Python post demonstrates passing an object between R and Python using `reticulate`. The analysis and figures are generated when the Quarto site is rendered.
 
 
 

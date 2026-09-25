@@ -1,0 +1,46 @@
+---
+title: "R and Python in One Post"
+author: "Wahid Raziqi"
+date: today
+categories: [r, python, reticulate]
+---
+
+# Introduction
+
+This post demonstrates how R and Python can be used together in the same Quarto document. The `reticulate` package allows an object created in R to be used in Python, and a result calculated in Python can then be returned to R.
+
+
+
+```{r}
+library(reticulate)
+
+r_values <- c(10, 20, 30, 40, 50)
+
+r_values
+```
+
+# Use the R object in Python
+
+```{python}
+python_values = r.r_values
+
+print("Values received from R:")
+print(python_values)
+
+python_mean = sum(python_values) / len(python_values)
+
+print("Mean calculated in Python:")
+print(python_mean)
+```
+
+# Use the Python result in R
+
+```{r}
+final_mean <- py$python_mean
+
+cat("The mean calculated in Python and returned to R is:", final_mean)
+```
+
+# Conclusion
+
+This example demonstrates how `reticulate` allows R and Python to work together in the same Quarto document. The values were created in R, the mean was calculated in Python, and the Python result was passed back to R.
